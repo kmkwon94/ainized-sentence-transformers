@@ -1,9 +1,7 @@
 """
 This is a simple application for sentence embeddings: semantic search
-
 We have a corpus with various sentences. Then, for a given query sentence,
 we want to find the most similar sentence in this corpus.
-
 This script outputs for various queries the top 5 most similar sentences in the corpus.
 """
 from sentence_transformers import SentenceTransformer
@@ -42,6 +40,3 @@ for query, query_embedding in zip(queries, query_embeddings):
 
     for idx, distance in results[0:closest_n]:
         print(corpus[idx].strip(), "(Score: %.4f)" % (1-distance))
-
-
-

@@ -21,6 +21,7 @@ corpus = ['A man is eating food.',
           'A cheetah is running behind its prey.',
           'A cheetah chases prey on across a field.'
           ]
+         
 corpus_embeddings = embedder.encode(corpus)
 
 # Perform kmean clustering
