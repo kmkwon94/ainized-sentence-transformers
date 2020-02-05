@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     vim 
 
-COPY . /sentence-transformers
-WORKDIR /sentence-transformers
-RUN pip3 install -e .
+COPY . /ainized-sentence-transformers
+WORKDIR /ainized-sentence-transformers
+RUN ["python3", "-m", "pip", "install", "-r", "requirements.txt"]
 
-RUN python3 application_semantic_search_open_corpus.py
+RUN python3 basic_embedding.py
 RUN mkdir -p upload
 EXPOSE 80
 CMD python3 ./main.py
