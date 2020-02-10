@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>initial check</title>
+    <script type="text/javascript">
+      function check_only(chk) {
+        var obj = document.getElementsByName("checkValue");
+        for (var i = 0; i < obj.length; i++) {
+          if (obj[i] != chk) {
+            obj[i].checked = false;
+          }
+        }
+      }
+    </script>
+    <style>
+      * {
+        font-size: 16px;
+        font-family: Consolas, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="/initialCheck">
+      <p>Choose one of them</p>
+      <label
+        ><input
+          type="checkbox"
+          name="checkValue"
+          value="0"
+          onclick="check_only(this);"
+        />
+        sample</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkValue"
+          value="1"
+          onclick="check_only(this);"
+        />
+        upload your sample</label
+      >
+      <p>
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+      </p>
+    </form>
+  </body>
+</html>
