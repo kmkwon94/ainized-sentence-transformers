@@ -1,0 +1,60 @@
+openapi: 3.0.1
+
+info:
+  title: Sentence-Transformers
+  version: 0.0.1
+  description:
+    Sentence-Transformers changes input_query(set of sentences) to silmilar sentences which has similar meaning.
+    We provide two sections /sample and /upload_your_sample. In sample section, we provide three input_query('A man is eating pasta.',
+    'Someone in a gorilla costume is playing a set of drums.', 'A cheetah chases prey on across a field.').
+servers:
+  - url: http://35.221.102.93:80
+
+tags:
+  - name: Sentence-Transformers
+    description: Sentence-Transformers API
+
+paths:
+  /sample:
+    post:
+      summary: This is for sample
+      tags:
+        - Sentence-Transformers Sample
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: object
+                format: binary
+  /upload_your_sample:
+    post:
+      summary: You can input your sentences.txt(file name must be "sentences.txt")
+      tags:
+        - Sentence-Transformers Your Sample
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                input_query:
+                  type: string
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: object
+                format: binary

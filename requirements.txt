@@ -6,3 +6,4 @@ scikit-learn
 scipy
 nltk
 flask
+flask-cors
