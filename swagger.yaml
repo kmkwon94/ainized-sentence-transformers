@@ -3,30 +3,86 @@ openapi: 3.0.1
 info:
   title: Sentence-Transformers
   version: 0.0.1
-  description:
-    Sentence-Transformers changes input_query(set of sentences) to silmilar sentences which has similar meaning.
-    We provide two sections /sample and /upload_your_sample. In sample section, we provide three input_query('A man is eating pasta.',
-    'Someone in a gorilla costume is playing a set of drums.', 'A cheetah chases prey on across a field.'). Corpus setting is already prepared.
-    The result shows you top five similar sentecnes and similar ratio.
-    In upload your sample section, you can upload your sentences.txt(file name must be sentences.txt) for corpus. You can test your input_query by yourself.
+  description: " # Sentence-Transformers는 input_query(문장들의 집합)들을 비슷한 의미를 가진 문장들로 바꾸어 줍니다.\n## 이 API(kor_ver)는 두 가지를 제공해 주는데요.\n \n## Sentence-Transformers Korean Sample 과 Sentence-Transformers for Korean input을 제공해 줍니다.\n \n### Sentence-Transformers Korean Sample 에서는 이미 지정된 한국어 문장 집합들 중에서 주어진 `input_query('고릴라 분장을 한 사람이 드럼을 치고 있다.', '한 남자가 스파게티를 먹고 있다', '한 치타가 평원을 가로지르며 먹잇감을 쫓고 있다.')`와 가장 비슷한 의미를 가진 확률이 높은 상위 5개를 뽑아서 보여줍니다.\n\n### 그리고 Sentence-Transformers for Korean input은 여러분들께서 가지고 계신 한국어 문장 집합들을 `\"sentences_ko.txt\"` 의 이름으로 업로드를 해주시면 input_query를 입력할 수 있습니다. input_query는 한 문장에서 여러문장까지 입력 받을 수 있고 여러 문장을 입력하실 때는 ,로 구분해 주시면 됩니다. 이도 위의 Sentence-Transformers Korean Sample과 마찬가지로 가장 비슷한 의미를 가질 확률이 높은 상위 5개의 문장을 `\"sentences_ko.txt\"`에서 뽑아 보여줍니다.\n\n## Sentence-Transformers changes input_query(set of sentences) to silmilar sentences which has similar meaning.\n\n## We provide two sections Sentence-Transformers English Sample and Sentence-Transformers for English input. \n### In Sentence-Transformers English Sample section, we provide three input_query`('A man is eating pasta.','Someone in a gorilla costume is playing a set of drums.', 'A cheetah chases prey on across a field.')`. Corpus setting is already prepared. The result shows you top five similar sentecnes and similar ratio.\n\n### In Sentence-Transformers for English input section, you can upload your `sentences.txt`(file name must be `sentences.txt`) for corpus. You can test your input_query by yourself."
 servers:
-  - url: https://sentence-transformers.kmkwon94.endpoint.dev.ainize.ai/
+  - url: https://d2477192.ngrok.io
 
 tags:
-  - name: Sentence-Transformers
-    description: Sentence-Transformers API
+  - name: Sentence-Transformers Korean Sample
+    description: 한국어 sample 입니다. txt file과 input_query는 이미 설정되어 있습니다.
+  - name: Sentence-Transformers for Korean input
+    description: 한국어 input 입니다. sentences_ko.txt를 upload하고 input_query를 입력해야합니다.
+  - name: Sentence-Transformers English Sample
+    description: 영어 sample 입니다. txt file과 input_query는 이미 설정되어 있습니다.
+  - name: Sentence-Transformers for English input
+    description: 영어 input 입니다. sentences.txt를 upload하고 input_query를 입력해야합니다.
 
 paths:
-  /sample:
+  /sample_ko:
     post:
-      summary: This is for sample
+      summary: This is for Korean sample
       tags:
-        - Sentence-Transformers Sample
+        - Sentence-Transformers Korean Sample
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
+              properties:
+                input_query:
+                  default: "고릴라 분장을 한 사람이 드럼을 치고 있다, 한 남자가 스파게티를 먹고 있다, 한 치타가 평원을 가로지르며 먹잇감을 쫓고 있다."
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: object
+                format: binary
+
+  /upload_your_sample_ko:
+    post:
+      summary: You can input your sentences_ko.txt(fine name must be "sentences_ko.txt")
+      description: "[sentences_ko.txt](https://doc-10-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/g3ard4ock3evd4titlamt7ikqecmqgj3/1581405300000/09825736153812766494/09825736153812766494/100erpj_zLLLKTjmNqnsQtlHsBph3HYWx?h=03826407633781310476&e=download&authuser=1)"
+      tags:
+        - Sentence-Transformers for Korean input
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  description: file name must be "sentences_ko.txt"
+                  type: string
+                  format: binary
+                input_query:
+                  description: 문장은 콤마(,)로 구분합니다.
+                  type: string
+                check_language:
+                  type: string
+                  default: "ko"
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: object
+                format: binary
+  /sample:
+    post:
+      summary: This is for English sample
+      tags:
+        - Sentence-Transformers English Sample
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                input_query:
+                  default: "A man is eating pasta, Someone in a gorilla costume is playing a set of drums, A cheetah chases prey on across a field."
 
       responses:
         "200":
@@ -36,11 +92,13 @@ paths:
               schema:
                 type: object
                 format: binary
+
   /upload_your_sample:
     post:
       summary: You can input your sentences.txt(file name must be "sentences.txt")
+      description: "[sentences.txt](https://doc-0o-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/qp36p466q1apa3p27sc52q0hj7v5h8gm/1581405300000/09825736153812766494/09825736153812766494/1D8BV8ss83XVXhpkdu2C379YoI9VoM3mh?e=download&h=03826407633781310476&authuser=1&nonce=0vh6d6k6dhs04&user=09825736153812766494&hash=ji5kosjju9padd97ihhbeo44r93koe5n)"
       tags:
-        - Sentence-Transformers Your Sample
+        - Sentence-Transformers for English input
       requestBody:
         content:
           multipart/form-data:
@@ -48,10 +106,15 @@ paths:
               type: object
               properties:
                 file:
+                  description: file name must be "sentences.txt"
                   type: string
                   format: binary
                 input_query:
+                  description: 여러 문장은 콤마(,)로 구분합니다.
                   type: string
+                check_language:
+                  type: string
+                  default: "en"
       responses:
         "200":
           description: Successful Operation
