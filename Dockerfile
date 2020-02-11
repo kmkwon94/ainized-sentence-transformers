@@ -14,6 +14,8 @@ WORKDIR /ainized-sentence-transformers
 RUN ["python3", "-m", "pip", "install", "-r", "requirements.txt"]
 
 RUN python3 basic_embedding.py
+RUN python3 basic_embedding_ko.py
 RUN mkdir -p upload
 EXPOSE 80
+ENV PYTHONIOENCODING=utf-8
 CMD python3 ./main.py

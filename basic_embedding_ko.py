@@ -3,6 +3,7 @@ This basic example loads a pre-trained model from the web and uses it to
 generate sentence embeddings for a given list of sentences.
 """
 
+# -*- coding: utf-8 -*-
 from sentence_transformers import SentenceTransformer, LoggingHandler
 import numpy as np
 import logging
@@ -18,7 +19,7 @@ logging.basicConfig(format='%(asctime)s - %(message)s',
 
 
 # Load Sentence model (based on BERT) from URL
-model = SentenceTransformer('bert-base-nli-mean-tokens')
+model = SentenceTransformer('distiluse-base-multilingual-cased')
 
 # Embed a list of sentences
 sentences = ['This framework generates embeddings for each input sentence',
