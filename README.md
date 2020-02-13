@@ -1,3 +1,37 @@
+# Ainized Sentence Transformers
+[![Run on Ainize](https://ainize-dev.herokuapp.com/static/images/run_on_ainize_button.svg)](https://ainize-dev.web.app/redirect?git_repo=github.com/kmkwon94/ainized-sentence-transformers)
+
+This repository proviedes sentence-transformers which find similar sentences in .txt file show you sentences that have top 5 probability.
+
+This repository uses pre-trained model named `bert-base-nli-mean-tokens` and `distiluse-base-multilingual-cased`. `bert-base-nli-mean-tokens` only use English. but `distiluse-base-multilingual-cased` supported multilingual languages(Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Turkish.)
+
+
+# How to run on ainize
+1. Just click `Run on Ainize` button
+2. There are four options
+3. You cannot input your txt file and queries in sample section. it just shows you examples
+4. If you want to upload file and input your own queries, please run for input section.
+5. In Korean input section, txt file must be named like `"sentences_ko.txt"`
+6. In English input section, txt file must be named like `"sentences.txt"`
+7. Outputs are provided json API
+   
+# How to deploy
+ainized-sentence-transformers server is dockerlized, so it can be built and run using docker commands.
+
+## Docker build(If you want to run on your local environmnet)
+first of all git clone this repo
+```sh
+git clone https://github.com/kmkwon94/ainized-karateclub.git
+```
+Then you can use this commend
+```sh
+docker build -t [your dockerhub ID]/[your docker repo]
+
+docker run -it -p 80:80 [your dockerhub ID]/[your docker repo]
+```
+
+
+
 # Sentence Transformers: Sentence Embeddings using BERT / RoBERTa / DistilBERT / ALBERT / XLNet with PyTorch
 BERT / XLNet produces out-of-the-box rather bad sentence embeddings. This repository fine-tunes BERT / RoBERTa / DistilBERT / ALBERT / XLNet with a siamese or triplet network structure to produce semantically meaningful sentence embeddings that can be used in unsupervised scenarios: Semantic textual similarity via cosine-similarity, clustering, semantic search.
 
@@ -228,18 +262,18 @@ The following models can be used for languages other than English. The vector sp
 
 Extensive evaluation is currently undergoing, but here we provide some preliminary results.
 
-| Model    | STS benchmark | SentEval  |
-| ----------------------------------|:-----: |:---:   |
-| Avg. GloVe embeddings             | 58.02  | 81.52  |
-| BERT-as-a-service avg. embeddings | 46.35  | 84.04  |
-| BERT-as-a-service CLS-vector      | 16.50  | 84.66  |
-| InferSent - GloVe                 | 68.03  | 85.59  |
-| Universal Sentence Encoder        | 74.92  | 85.10  |
-|**Sentence Transformer Models**    ||
-| bert-base-nli-mean-tokens         | 77.12  | 86.37 |
-| bert-large-nli-mean-tokens        | 79.19  | 87.78 |
-| bert-base-nli-stsb-mean-tokens    | 85.14  | 86.07 |
-| bert-large-nli-stsb-mean-tokens   | 85.29 | 86.66|
+| Model                             | STS benchmark | SentEval |
+| --------------------------------- | :-----------: | :------: |
+| Avg. GloVe embeddings             |     58.02     |  81.52   |
+| BERT-as-a-service avg. embeddings |     46.35     |  84.04   |
+| BERT-as-a-service CLS-vector      |     16.50     |  84.66   |
+| InferSent - GloVe                 |     68.03     |  85.59   |
+| Universal Sentence Encoder        |     74.92     |  85.10   |
+| **Sentence Transformer Models**   |               |
+| bert-base-nli-mean-tokens         |     77.12     |  86.37   |
+| bert-large-nli-mean-tokens        |     79.19     |  87.78   |
+| bert-base-nli-stsb-mean-tokens    |     85.14     |  86.07   |
+| bert-large-nli-stsb-mean-tokens   |     85.29     |  86.66   |
 
 
 ## Loss Functions

@@ -5,7 +5,7 @@ info:
   version: 0.0.1
   description: " # Sentence-Transformers는 input_query(문장들의 집합)들을 비슷한 의미를 가진 문장들로 바꾸어 줍니다.\n## 이 API(kor_ver)는 두 가지를 제공해 주는데요.\n \n## Sentence-Transformers Korean Sample 과 Sentence-Transformers for Korean input을 제공해 줍니다.\n \n### Sentence-Transformers Korean Sample 에서는 이미 지정된 한국어 문장 집합들 중에서 주어진 `input_query('고릴라 분장을 한 사람이 드럼을 치고 있다.', '한 남자가 스파게티를 먹고 있다', '한 치타가 평원을 가로지르며 먹잇감을 쫓고 있다.')`와 가장 비슷한 의미를 가진 확률이 높은 상위 5개를 뽑아서 보여줍니다.\n\n### 그리고 Sentence-Transformers for Korean input은 여러분들께서 가지고 계신 한국어 문장 집합들을 `\"sentences_ko.txt\"` 의 이름으로 업로드를 해주시면 input_query를 입력할 수 있습니다. input_query는 한 문장에서 여러문장까지 입력 받을 수 있고 여러 문장을 입력하실 때는 ,로 구분해 주시면 됩니다. 이도 위의 Sentence-Transformers Korean Sample과 마찬가지로 가장 비슷한 의미를 가질 확률이 높은 상위 5개의 문장을 `\"sentences_ko.txt\"`에서 뽑아 보여줍니다.\n\n## Sentence-Transformers changes input_query(set of sentences) to silmilar sentences which has similar meaning.\n\n## We provide two sections Sentence-Transformers English Sample and Sentence-Transformers for English input. \n### In Sentence-Transformers English Sample section, we provide three input_query`('A man is eating pasta.','Someone in a gorilla costume is playing a set of drums.', 'A cheetah chases prey on across a field.')`. Corpus setting is already prepared. The result shows you top five similar sentecnes and similar ratio.\n\n### In Sentence-Transformers for English input section, you can upload your `sentences.txt`(file name must be `sentences.txt`) for corpus. You can test your input_query by yourself."
 servers:
-  - url: https://d2477192.ngrok.io
+  - url: https://sentence-transformers.kmkwon94.endpoint.dev.ainize.ai
 
 tags:
   - name: Sentence-Transformers Korean Sample
@@ -43,7 +43,7 @@ paths:
   /upload_your_sample_ko:
     post:
       summary: You can input your sentences_ko.txt(fine name must be "sentences_ko.txt")
-      description: "[sentences_ko.txt](https://doc-10-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/g3ard4ock3evd4titlamt7ikqecmqgj3/1581405300000/09825736153812766494/09825736153812766494/100erpj_zLLLKTjmNqnsQtlHsBph3HYWx?h=03826407633781310476&e=download&authuser=1)"
+      description: 예제 파일 다운로드 "[sentences_ko.txt](https://doc-10-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/g3ard4ock3evd4titlamt7ikqecmqgj3/1581405300000/09825736153812766494/09825736153812766494/100erpj_zLLLKTjmNqnsQtlHsBph3HYWx?h=03826407633781310476&e=download&authuser=1)"
       tags:
         - Sentence-Transformers for Korean input
       requestBody:
@@ -96,7 +96,7 @@ paths:
   /upload_your_sample:
     post:
       summary: You can input your sentences.txt(file name must be "sentences.txt")
-      description: "[sentences.txt](https://doc-0o-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/qp36p466q1apa3p27sc52q0hj7v5h8gm/1581405300000/09825736153812766494/09825736153812766494/1D8BV8ss83XVXhpkdu2C379YoI9VoM3mh?e=download&h=03826407633781310476&authuser=1&nonce=0vh6d6k6dhs04&user=09825736153812766494&hash=ji5kosjju9padd97ihhbeo44r93koe5n)"
+      description: 예제 파일 다운로드 "[sentences.txt](https://doc-0o-9c-docs.googleusercontent.com/docs/securesc/95aud4gfrg9qub28r4pf1tecnurlruth/qp36p466q1apa3p27sc52q0hj7v5h8gm/1581405300000/09825736153812766494/09825736153812766494/1D8BV8ss83XVXhpkdu2C379YoI9VoM3mh?e=download&h=03826407633781310476&authuser=1&nonce=0vh6d6k6dhs04&user=09825736153812766494&hash=ji5kosjju9padd97ihhbeo44r93koe5n)"
       tags:
         - Sentence-Transformers for English input
       requestBody:
